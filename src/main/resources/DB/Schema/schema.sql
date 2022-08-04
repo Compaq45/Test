@@ -1,0 +1,9 @@
+CREATE TABLE Usrs
+(
+    userId      INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    firstName   VARCHAR(255) DEFAULT NULL,
+    lastName    VARCHAR(255) DEFAULT NULL,
+    ldapaccount VARCHAR(255) DEFAULT NULL,
+    password    VARCHAR(255) DEFAULT NOT NULL,
+    groupId     INTEGER      DEFAULT NULL
+);
