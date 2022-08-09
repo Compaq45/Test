@@ -1,2 +1,4 @@
-INSERT INTO Usrs (firstName, lastName, password, groupId)
-VALUES ('admin', 'adminovich', ' ', 1);
+INSERT INTO USRS (FIRST_NAME, LAST_NAME) VALUES ('admin', 'adminovich');
+INSERT INTO USRS (FIRST_NAME, LAST_NAME) VALUES ('user', 'userovich');
+INSERT INTO TASK (TASK_NAME, TASK_COMMENT) VALUES ('task1', 'Comment1');
+INSERT INTO TASK (TASK_NAME, TASK_COMMENT) VALUES ('task2', 'Comment2');

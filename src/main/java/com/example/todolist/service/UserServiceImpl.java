@@ -1,12 +1,11 @@
-package service;
+package com.example.todolist.service;
 
-import model.User;
+import com.example.todolist.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repo.UserRepo;
+import com.example.todolist.repo.UserRepo;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {

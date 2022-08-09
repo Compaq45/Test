@@ -1,6 +1,6 @@
-package service;
+package com.example.todolist.service;
 
-import model.User;
+import com.example.todolist.model.User;
 
 import java.util.List;
 
