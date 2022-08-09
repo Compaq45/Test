@@ -11,4 +11,5 @@ public interface TaskService {
     void delete(Long id); // removes task from BD by ID
     List<Task> getTasks(String keyWord); // Search tasks by keyword
     Task getTask(Long id); // get Task by ID
+    void updateTask(Task task); //update Task
 }

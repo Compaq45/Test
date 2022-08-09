@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 
 @Entity
@@ -20,6 +20,8 @@ public class Task {
     private String name;
     @Column(name = "TASK_COMMENT")
     private String comment;
-    @Column(name = "TASK_CREATE_DATE")
-    private Date date;
+    @Column(name = "TASK_CREATE_TIMESTAMP")
+    private Timestamp create_Timestamp;
+    @Column(name = "TASK_UPDATE_TIMESTAMP")
+    private Timestamp update_Timestamp;
 }
