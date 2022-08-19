@@ -19,7 +19,8 @@ public class Message {
     private String text;
     @Column(name = "MESSAGE_CREATE_TIMESTAMP")
     private Timestamp create_Timestamp;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "TASK_ID")
-    private Task parent;
+    @Column(name = "TASK_ID")
+    private Long parentTask;
+    @Column(name = "USER_ID")
+    private Long creatorID;
 }

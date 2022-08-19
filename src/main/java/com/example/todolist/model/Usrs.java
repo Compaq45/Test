@@ -14,9 +14,10 @@ public class Usrs {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "USER_ID")
     private Long userId;
+    @Column(name = "USER_NAME")
+    private String userName;
     @Column(name = "FIRST_NAME")
     private String firstName;
     @Column(name = "LAST_NAME")
     private String lastName;
-
 }
