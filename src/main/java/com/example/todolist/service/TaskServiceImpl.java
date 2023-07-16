@@ -22,7 +22,7 @@ public class TaskServiceImpl implements TaskService{
 
     @Override
     public void addTask(Task task) {
-        task.setCreate_Timestamp(new Timestamp(System.currentTimeMillis()));
+        task.setFilling_time(new Timestamp(System.currentTimeMillis()));
     taskRepo.save(task);
     }
 
@@ -38,7 +38,6 @@ public class TaskServiceImpl implements TaskService{
 
     @Override
     public void updateTask(Task task) {
-        task.setUpdate_Timestamp(new Timestamp(System.currentTimeMillis()));
         taskRepo.save(task);
     }
 

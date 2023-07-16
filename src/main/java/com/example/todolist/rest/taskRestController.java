@@ -39,9 +39,8 @@ public class taskRestController {
     @PutMapping(value = "/tasks/")
     ResponseEntity<String> addTask(@RequestBody @Validated Task task)
     {
-        task.setCreate_Timestamp(new Timestamp(System.currentTimeMillis()));
-        task.setUpdate_Timestamp(null);
-        task.setId(null);
+        task.setFilling_time(new Timestamp(System.currentTimeMillis()));
+        task.setTask_id(null);
         this.taskService.addTask(task);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
@@ -49,10 +48,8 @@ public class taskRestController {
     @PatchMapping(value = "/tasks/")
     ResponseEntity<String> updateTask(@RequestBody @Validated Task task)
     {
-        Task target=this.taskService.getTask(task.getId());
+        Task target=this.taskService.getTask(task.getTask_id());
         if(target!=null) {
-            task.setCreate_Timestamp(target.getCreate_Timestamp());
-            task.setUpdate_Timestamp(new Timestamp(System.currentTimeMillis()));
             this.taskService.updateTask(task);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         }
