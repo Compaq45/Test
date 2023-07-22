@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Getter
 @Setter
@@ -22,4 +23,6 @@ public class Employee {
     private String second_name;
     @Column(name = "position")
     private String position;
+    @Column(name = "added")
+    private Timestamp added_timestamp;
 }

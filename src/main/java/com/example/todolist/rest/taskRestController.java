@@ -8,10 +8,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 import java.sql.Timestamp;
 import java.util.List;
-
 
 @RestController
 @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -24,19 +22,19 @@ public class taskRestController {
         List<Task> result = this.taskService.getTasks();
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
-    @GetMapping(value = "/tasks/", params = "id")
+    @GetMapping(value = "/task/", params = "id")
     ResponseEntity<Task> getTask(@RequestParam("id") Long taskId) {
         Task result = this.taskService.getTask(taskId);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
-    @DeleteMapping( value = "/tasks/", params = {"id"})
+    @DeleteMapping( value = "/task/", params = {"id"})
     ResponseEntity<String> deleteTask(@RequestParam("id") Long taskId) {
         if(this.taskService.getTask(taskId)!=null)
         this.taskService.delete(taskId);
         else return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>("Success",HttpStatus.ACCEPTED);
     }
-    @PutMapping(value = "/tasks/")
+    @PutMapping(value = "/task/")
     ResponseEntity<String> addTask(@RequestBody @Validated Task task)
     {
         task.setFilling_time(new Timestamp(System.currentTimeMillis()));
@@ -45,7 +43,7 @@ public class taskRestController {
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
-    @PatchMapping(value = "/tasks/")
+    @PatchMapping(value = "/task/")
     ResponseEntity<String> updateTask(@RequestBody @Validated Task task)
     {
         Task target=this.taskService.getTask(task.getTask_id());
