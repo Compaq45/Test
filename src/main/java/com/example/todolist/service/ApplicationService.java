@@ -11,5 +11,5 @@ public interface ApplicationService {
     void deleteApplication(Long id); // removes Application from DB by ID
     List<Application> getApplications(String keyWord); // Search Applications by keyword
     Application getApplication(Long id); // get Application by ID
-    void updateApplication(Application application); //update Application
+    void updateApplication(Application application_old, Application application); //update Application
 }

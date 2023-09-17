@@ -12,47 +12,44 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @RestController
-@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-public class taskRestController {
+@RequestMapping(value = "Tasks",produces = MediaType.APPLICATION_JSON_VALUE)
+public class TaskRestController {
     @Autowired
     TaskService taskService;
 
-    @GetMapping( "/tasks")
+    @GetMapping
     ResponseEntity<List<Task>> getAllTasks() {
         List<Task> result = this.taskService.getTasks();
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
-    @GetMapping(value = "/task/", params = "id")
-    ResponseEntity<Task> getTask(@RequestParam("id") Long taskId) {
-        Task result = this.taskService.getTask(taskId);
-        return new ResponseEntity<>(result, HttpStatus.OK);
+    @GetMapping("{id}")
+    ResponseEntity<Task> getTask(@RequestParam("id") Task task)
+    {
+        return new ResponseEntity<>(task, HttpStatus.OK);
     }
-    @DeleteMapping( value = "/task/", params = {"id"})
+
+    @DeleteMapping( "{id}")
     ResponseEntity<String> deleteTask(@RequestParam("id") Long taskId) {
         if(this.taskService.getTask(taskId)!=null)
         this.taskService.delete(taskId);
         else return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        return new ResponseEntity<>("Success",HttpStatus.ACCEPTED);
+        return new ResponseEntity<>("Success",HttpStatus.OK);
     }
-    @PutMapping(value = "/task/")
-    ResponseEntity<String> addTask(@RequestBody @Validated Task task)
+    @PostMapping()
+    ResponseEntity<Task> addTask(@RequestBody Task task)
     {
         task.setFilling_time(new Timestamp(System.currentTimeMillis()));
         task.setTask_id(null);
         this.taskService.addTask(task);
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(task, HttpStatus.CREATED);
     }
 
-    @PatchMapping(value = "/task/")
-    ResponseEntity<String> updateTask(@RequestBody @Validated Task task)
+    @PutMapping("{id}")
+    ResponseEntity<Task> updateTask(@RequestBody Task task,
+                                      @RequestParam("id") Task task_old )
     {
-        Task target=this.taskService.getTask(task.getTask_id());
-        if(target!=null) {
-            this.taskService.updateTask(task);
-            return new ResponseEntity<>(HttpStatus.ACCEPTED);
-        }
-        else
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        taskService.updateTask(task_old,task);
+        return new ResponseEntity<>(task, HttpStatus.OK);
     }
 
 }

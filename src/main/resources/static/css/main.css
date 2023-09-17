@@ -1,0 +1,30 @@
+.task-list-element {
+    font-size: 120%;
+    font-weight: bold;
+    border: darkslategray;
+    border-style: solid;
+    padding-top: 10px;
+    margin: 2px;
+}
+
+.task-name {
+    width: 20%;
+    alignment: left;
+    white-space: nowrap;
+    display:inline-block;
+}
+
+.task-creator {
+    width: 60%;
+    alignment: center;
+    white-space: nowrap;
+    display:inline-block;
+    text-align: center;
+}
+
+.task-timestamp {
+    width: 20%;
+    alignment: right;
+    display: inline;
+    text-align: right;
+}

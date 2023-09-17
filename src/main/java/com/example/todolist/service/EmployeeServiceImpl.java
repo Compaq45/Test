@@ -1,7 +1,9 @@
 package com.example.todolist.service;
 
 import com.example.todolist.model.Employee;
+import com.example.todolist.model.Task;
 import com.example.todolist.repo.EmployeeRepo;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,7 +38,9 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public void updateEmployee(Employee employee) {
-        employeeRepo.save(employee);
+    public void updateEmployee(Employee employee_old, Employee employee_new)
+    {
+        BeanUtils.copyProperties(employee_old,employee_new,"employee_id", "added");
+        employeeRepo.save(employee_old);
     }
 }

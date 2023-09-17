@@ -1,11 +1,11 @@
 package com.example.todolist.service;
 
+import com.example.todolist.model.Application;
 import com.example.todolist.model.Comment;
 import com.example.todolist.model.Task;
 import com.example.todolist.repo.CommentRepo;
+import com.example.todolist.repo.TaskRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.util.List;
@@ -14,6 +14,8 @@ import java.util.List;
 public class CommentServiceImpl implements CommentService {
     @Autowired
     CommentRepo commentRepo;
+    @Autowired
+    TaskRepo taskRepo;
 
     @Override
     public Comment getComment(Long id) {
@@ -21,18 +23,18 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public List<Comment> getComments(Long task_id) {
+    public List<Comment> getAllComments() {
         return commentRepo.findAll();
     }
 
     @Override
-    public List<Comment> getComments(Task task) {
-        ExampleMatcher matcher = ExampleMatcher
-                .matchingAll()
-                .withIgnoreNullValues();
-        Comment example = new Comment();
-        example.setTask_id(task);
-        return commentRepo.findAll(Example.of(example,matcher));
+    public List<Comment> getCommentsByTask(Task task) {
+        return commentRepo.findByTaskId(task);
+    }
+
+    @Override
+    public List<Comment> getCommentsByApplication(Application application) {
+        return commentRepo.findByApplicationId(application);
     }
 
     @Override
@@ -43,12 +45,15 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public void deleteComment(Comment comment) {
-        commentRepo.delete(comment);
+    public void deleteComment(Long id)
+    {
+        commentRepo.deleteById(id);
     }
 
     @Override
-    public void updateComment(Comment comment) {
-        commentRepo.save(comment);
+    public void updateComment(Comment comment_old, Comment comment_new)
+    {
+        comment_old.setText(comment_new.getText());
+        commentRepo.save(comment_old);
     }
 }

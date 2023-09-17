@@ -2,9 +2,9 @@ package com.example.todolist.service;
 
 import com.example.todolist.model.Application;
 import com.example.todolist.repo.ApplicationRepo;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -37,11 +37,14 @@ public class ApplicationServiceImpl implements ApplicationService{
 
     @Override
     public Application getApplication(Long id) {
-        return applicationRepo.findById(id);
+        return applicationRepo.findById(id).get();
     }
 
     @Override
-    public void updateApplication(Application application) {
-        applicationRepo.save(application);
+    public void updateApplication(Application application_old, Application application_new)
+    {
+        BeanUtils.copyProperties(application_old,application_new,"application_id");
+        applicationRepo.save(application_old);
     }
+
 }

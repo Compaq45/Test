@@ -8,5 +8,5 @@ public interface EmployeeService {
     Employee getEmployee(Long id);
     void addEmployee(Employee employee);
     void deleteEmployee(Long id);
-    void updateEmployee(Employee employee);
+    void updateEmployee(Employee employee_old, Employee employee_new);
 }

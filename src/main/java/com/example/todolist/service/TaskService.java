@@ -12,5 +12,5 @@ public interface TaskService {
     void delete(Task task); // removes task from DB
     List<Task> getTasks(String keyWord); // Search tasks by keyword
     Task getTask(Long id); // get Task by ID
-    void updateTask(Task task); //update Task
+    void updateTask(Task task_old, Task task_new); //update Task
 }

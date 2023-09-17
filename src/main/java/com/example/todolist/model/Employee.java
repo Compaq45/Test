@@ -1,5 +1,6 @@
 package com.example.todolist.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,5 +25,6 @@ public class Employee {
     @Column(name = "position")
     private String position;
     @Column(name = "added")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-YYYY HH:mm:ss")
     private Timestamp added_timestamp;
 }

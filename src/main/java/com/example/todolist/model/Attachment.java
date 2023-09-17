@@ -1,5 +1,6 @@
 package com.example.todolist.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,7 +16,7 @@ public class Attachment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "attachment_id")
     private Long attachment_id;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @MapsId
     @JoinColumn(name = "comment_id")
     private Comment comment_id;
@@ -26,5 +27,6 @@ public class Attachment {
     @Column(name = "attachment_link")
     private String attachment_link;
     @Column(name = "attachment_date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-YYYY HH:mm:ss")
     private Timestamp attachment_date;
 }

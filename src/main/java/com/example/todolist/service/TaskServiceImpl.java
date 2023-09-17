@@ -5,6 +5,7 @@ import com.example.todolist.model.Task;
 import java.sql.Timestamp;
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.todolist.repo.TaskRepo;
@@ -15,9 +16,7 @@ public class TaskServiceImpl implements TaskService{
     TaskRepo taskRepo;
     @Override
     public List<Task> getTasks() {
-        List<Task> result;
-        result = taskRepo.findAll();
-        return result;
+        return taskRepo.findAll();
     }
 
     @Override
@@ -42,8 +41,9 @@ public class TaskServiceImpl implements TaskService{
     }
 
     @Override
-    public void updateTask(Task task) {
-        taskRepo.save(task);
+    public void updateTask(Task task_old, Task task_new) {
+        BeanUtils.copyProperties(task_old,task_new,"task_id");
+        taskRepo.save(task_old);
     }
 
     @Override

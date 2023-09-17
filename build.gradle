@@ -21,6 +21,8 @@ dependencies {
     implementation 'org.projectlombok:lombok:1.18.20'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
+    implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.4'
+
     compileOnly 'org.projectlombok:lombok:1.18.24'
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
     testCompileOnly 'org.projectlombok:lombok:1.18.24'
